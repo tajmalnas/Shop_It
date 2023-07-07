@@ -10,7 +10,7 @@ const HeroBanner = () => {
               <br/>Store            
             </h1>
             <p>
-              Shopping is bit of relaxing hobby for me.Which<br/> is sometimes troubling for the bank balance
+              Shopping is bit of relaxing hobby for me.<br/> Whichis sometimes troubling for the bank balance
             </p>
             <button>Learn More</button>
           </div>
