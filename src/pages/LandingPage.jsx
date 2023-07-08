@@ -1,4 +1,5 @@
 import Input from "../UI/Input"
+import BestDeals from "../components/LandingPageComponents/BestDeals/BestDeals"
 import CategoryDisplay from "../components/LandingPageComponents/CategoryShower/CategoryDisplay"
 import HeroBanner from "../components/LandingPageComponents/Hero/HeroBanner"
 import Navbar from "../components/LandingPageComponents/Navbar"
@@ -12,6 +13,7 @@ const LandingPage = () => {
         <Input name={"main"}/>
       </div>
       <CategoryDisplay/>
+      <BestDeals/>
     </>
   )
 }

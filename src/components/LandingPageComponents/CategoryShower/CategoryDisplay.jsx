@@ -61,16 +61,34 @@ const CategoryDisplay = () => {
 
   return (
     <div>
-        <div className='text11'>
-            Our Top Category
-        </div>
-        <div className='carousel'>
-            <Carousel breakPoints={breakPoints} showArrows={false} enableAutoPlay={true} autoPlaySpeed={4000} >
-                {categoriesArray.map((item) => (<CategoryCard key={item.id} text={item.name} url={item.img}/>))}
-            </Carousel>
-        </div>
+      <div className='text11'>
+        Our Top Category
+      </div>
+      <div className='carousel'>
+        <Carousel
+          breakPoints={breakPoints}
+          showArrows={false}
+          
+          renderPagination={({ pages, activePage, onClick }) => (
+            <div className="custom-dots">
+              {pages.map((page) => (
+                <div
+                  key={page}
+                  onClick={() => onClick(page)}
+                  className={`custom-dot ${activePage === page ? "active" : ""}`}
+                ></div>
+              ))}
+            </div>
+          )}
+        >
+          {categoriesArray.map((item) => (
+            <CategoryCard key={item.id} text={item.name} url={item.img} />
+          ))}
+        </Carousel>
+      </div>
     </div>
-  )
-}
+  );
+};
+
 
 export default CategoryDisplay
