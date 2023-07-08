@@ -6,7 +6,7 @@ const Navbar = () => {
     <div className="wrapper" >
         <div className="navbar">
             <div className="shop-it">
-                <img className="shop-it-img" src="../../../public/assets/pngwing.com.png" ></img>
+                <img className="shop-it-img" src="/assets/pngwing.com.png" ></img>
                 <span className="shop-it-text">
                     shop-It
                 </span>
