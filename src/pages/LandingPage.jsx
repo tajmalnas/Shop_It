@@ -1,5 +1,6 @@
 import Input from "../UI/Input"
 import BestDeals from "../components/LandingPageComponents/BestDeals/BestDeals"
+import CashBackBanner from "../components/LandingPageComponents/CashBackBanner/CashBackBanner"
 import CategoryDisplay from "../components/LandingPageComponents/CategoryShower/CategoryDisplay"
 import ChooseBrand from "../components/LandingPageComponents/ChooseBrand/ChooseBrand"
 import HeroBanner from "../components/LandingPageComponents/Hero/HeroBanner"
@@ -16,6 +17,7 @@ const LandingPage = () => {
       <CategoryDisplay/>
       <BestDeals/>
       <ChooseBrand/>
+      <CashBackBanner/>
     </>
   )
 }

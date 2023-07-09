@@ -2,7 +2,7 @@
     margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
-    height: 10rem;
+    height: auto;
     margin-bottom: 2rem;
 }
 
@@ -34,5 +34,9 @@
 @media screen and (max-width: 768px) {
     .brand-container{
         margin-left: 1rem;
+    }
+    .brand{
+        height: 20rem;
+        
     }
 }
