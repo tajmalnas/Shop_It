@@ -57,7 +57,6 @@ const CategoryDisplay = () => {
         },
         
       ];
-      
 
   return (
     <div>
