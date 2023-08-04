@@ -10,7 +10,7 @@ const Input = (props) => {
   const class1 = "search-bar-"+name.toString();
     return (
     <div className='input-field'>
-        <input className={class1} value="search product"></input>  
+        <input className={class1} defaultValue="search product"></input>  
         <button className={but}><span className="pi pi-search"></span></button>
     </div>
     )

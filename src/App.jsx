@@ -1,8 +1,12 @@
-import LandingPage from "./pages/LandingPage"
+import ProductListing from "./pages/ProductListing/ProductListing"
+
+
+// import LandingPage from "./pages/LandingPage"
 const App = () => {
   return (
     <div>
-      <LandingPage/> 
+      {/* <LandingPage/>  */}
+      <ProductListing/>
     </div>
   )
 }

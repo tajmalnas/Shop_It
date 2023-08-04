@@ -109,7 +109,6 @@ const LandingPage = () => {
         fontColor="black"
         copyrightColor="grey"
       >
-       
       </SimpleReactFooter>
       }
     </>

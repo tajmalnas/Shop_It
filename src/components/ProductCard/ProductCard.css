@@ -1,4 +1,5 @@
 .card-product{
+    opacity: 0;
     position: relative;
     width: 14rem;
     height: 16.5rem;
@@ -9,6 +10,10 @@
     flex-direction: column;
     border: 0px;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.13);
+}
+.card-product.show{
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 .like{
     display: flex;

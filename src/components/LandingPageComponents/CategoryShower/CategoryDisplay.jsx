@@ -8,7 +8,6 @@ const CategoryDisplay = () => {
         { width: 768, itemsToShow: 4 },
         { width: 1200, itemsToShow: 6 }
       ];
-
       const categoriesArray = [
         {
           id: 1,
