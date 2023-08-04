@@ -1,5 +1,6 @@
 //import './ProductListing.css'
 import Navbar from '../../components/LandingPageComponents/Navbar'
+import FilterSection from '../../components/ProductPage/FliterSection/FilterSection'
 //import ProductList from '../../components/ProductPage/ProductsList/ProductsList'
 
 const ProductListing = () => {
@@ -7,7 +8,9 @@ const ProductListing = () => {
     <>
         <Navbar/>
         <hr/>
+        <FilterSection/>
         {/* <ProductList/> */}
+
     </>
   )
 }
