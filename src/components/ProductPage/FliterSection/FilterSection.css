@@ -3,7 +3,8 @@
    position : sticky;
    padding: 20px;
    margin-left: 2rem;
-   width:16rem
+   margin-bottom: 1rem;
+   width:16rem;
  }
  
  .filter-container {
@@ -57,3 +58,10 @@ input[type="checkbox"]:checked + label {
    font-weight: bold;
 }
  
+@media screen and (max-width: 468px) {
+   .filter-section {
+     height: 16rem;
+     overflow-y: scroll;
+   }
+ }
+    

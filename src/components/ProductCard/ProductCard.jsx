@@ -1,7 +1,24 @@
 /* eslint-disable react/prop-types */
 import './ProductCard.css'
+import { useEffect } from 'react';
 
 const ProductCard = (props) => {
+    useEffect(() => {
+        const cards = document.querySelectorAll(".card-product");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                entry.target.classList.toggle("show", entry.isIntersecting);
+            });
+        }, {
+            threshold: 0.5
+        }
+        );
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+        } 
+    );
   return (
     <div className='card-product'>
         <div className='card-product-img'>
