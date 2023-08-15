@@ -24,6 +24,7 @@ const ProductDesignPage = () => {
   return (
     <div>
         <Navbar/>
+        <hr/>
         <div className="product-design-page">
             <div className="product-design-upper">
                 <section className="product-design-upper-left">

@@ -15,6 +15,10 @@
     position: relative;
 }
 
+input{
+    text-align: center;
+}
+
 .but-main{
     position:absolute;
     top:20%;
