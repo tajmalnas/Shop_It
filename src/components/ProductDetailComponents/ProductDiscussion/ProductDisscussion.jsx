@@ -6,7 +6,7 @@ const ProductDisscussion = () => {
         <div className="discussion-upper">
             <form>
                 <div className='review-2'>
-                  <textarea placeholder='Write your point of view here...'></textarea>
+                  <textarea placeholder='discuss here...'></textarea>
                   <button>Submit</button>
                 </div>
             </form>

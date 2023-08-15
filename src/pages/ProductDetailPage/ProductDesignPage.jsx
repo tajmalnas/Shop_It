@@ -4,13 +4,19 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useState } from "react";
-// import ProductDetailsDetail from "../../components/ProductDetailComponents/ProductDetailsDetail/ProductDetailsDetail";
-// import RatingAndReview from "../../components/ProductDetailComponents/RatingAndReview/RatingAndReview";
+import ProductDetailsDetail from "../../components/ProductDetailComponents/ProductDetailsDetail/ProductDetailsDetail";
+import RatingAndReview from "../../components/ProductDetailComponents/RatingAndReview/RatingAndReview";
 import ProductDisscussion from "../../components/ProductDetailComponents/ProductDiscussion/ProductDisscussion";
+
+const tabOptions = [
+    { label: "Details", component: <ProductDetailsDetail /> },
+    { label: "Rating and Reviews", component: <RatingAndReview /> },
+    { label: "Discussion", component: <ProductDisscussion /> },
+];
+
 const ProductDesignPage = () => {
 
     const [value, setValue] = useState(0);
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -48,17 +54,15 @@ const ProductDesignPage = () => {
             </div>
             <div className="product-design-lower">
                 <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                    <Tabs value={value} onChange={handleChange} centered >
-                      <Tab label="Details" />
-                      <Tab label="Rating and Reviews" />
-                      <Tab label="Discussion" />
+                    <Tabs value={value} onChange={handleChange} centered>
+                        {tabOptions.map((tab, index) => (
+                            <Tab key={index} label={tab.label} />
+                        ))}
                     </Tabs>
                 </Box>
             </div>
             <div className="lower-tab-info">
-                {/* <ProductDetailsDetail/> */}
-                {/* <RatingAndReview/> */}
-                <ProductDisscussion/>
+                {tabOptions[value].component}
             </div>
         </div>
     </div>
