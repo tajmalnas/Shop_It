@@ -5,7 +5,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useState } from "react";
 // import ProductDetailsDetail from "../../components/ProductDetailComponents/ProductDetailsDetail/ProductDetailsDetail";
-import RatingAndReview from "../../components/ProductDetailComponents/RatingAndReview/RatingAndReview";
+// import RatingAndReview from "../../components/ProductDetailComponents/RatingAndReview/RatingAndReview";
+import ProductDisscussion from "../../components/ProductDetailComponents/ProductDiscussion/ProductDisscussion";
 const ProductDesignPage = () => {
 
     const [value, setValue] = useState(0);
@@ -56,7 +57,8 @@ const ProductDesignPage = () => {
             </div>
             <div className="lower-tab-info">
                 {/* <ProductDetailsDetail/> */}
-                <RatingAndReview/>
+                {/* <RatingAndReview/> */}
+                <ProductDisscussion/>
             </div>
         </div>
     </div>
