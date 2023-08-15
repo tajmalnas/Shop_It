@@ -1,6 +1,19 @@
 import Navbar from "../../components/LandingPageComponents/Navbar"
 import './ProductDesignPage.css'
+import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import { useState } from "react";
+import ProductDetailsDetail from "../../components/ProductDetailComponents/ProductDetailsDetail/ProductDetailsDetail";
+import RatingAndReview from "../../components/ProductDetailComponents/RatingAndReview/RatingAndReview";
 const ProductDesignPage = () => {
+
+    const [value, setValue] = useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
   return (
     <div>
         <Navbar/>
@@ -33,7 +46,17 @@ const ProductDesignPage = () => {
                 </section>
             </div>
             <div className="product-design-lower">
-
+                <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                    <Tabs value={value} onChange={handleChange} centered >
+                      <Tab label="Details" />
+                      <Tab label="Rating and Reviews" />
+                      <Tab label="Discussion" />
+                    </Tabs>
+                </Box>
+            </div>
+            <div className="lower-tab-info">
+                {/* <ProductDetailsDetail/> */}
+                <RatingAndReview/>
             </div>
         </div>
     </div>

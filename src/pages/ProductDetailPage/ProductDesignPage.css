@@ -2,7 +2,7 @@
     display:grid;
     grid-template-columns: 0.8fr 1fr;
     gap: 1rem;
-    
+
 }
 .product-design-upper-right .sizes button{
     margin:0.2rem;
@@ -11,6 +11,10 @@
     font-weight:500;
     border:1px solid rgb(11, 141, 228);
     background-color: rgb(255, 255, 255);
+}
+.product-design-upper-right .quantity{
+    display: flex;
+    flex-direction: row;
 }
 .product-design-upper-right .quantity .button-div{
     display: flex;
@@ -53,6 +57,22 @@
     height: 100%;
     object-fit: contain;
     border-radius: 1rem;
+}
+
+.product-design-lower{
+    margin-top: 0.5rem;
+}
+
+.lower-tab-info{
+    height: max-content;
+    margin-top: 1rem;
+    display: flex;
+    border-radius: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    background-color: rgba(220, 220, 220, 0.151);
+    padding: 1rem;
 }
 
 @media screen and (max-width: 560px){
