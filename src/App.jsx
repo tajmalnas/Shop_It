@@ -3,7 +3,7 @@
 // import ProductDesignPage from "./pages/ProductDetailPage/ProductDesignPage"
 import './App.css'
 import CartPage from './pages/CartPage/CartPage'
-
+import 'primeicons/primeicons.css';
 // import LandingPage from "./pages/LandingPage"
 const App = () => {
   return (

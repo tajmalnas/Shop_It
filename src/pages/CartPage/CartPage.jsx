@@ -1,3 +1,4 @@
+import PaymentDetailForm from '../../Forms/PaymentDetailForm/PaymentDetailForm';
 import CartCard from '../../components/CartCard/CartCard';
 import './CartPage.css';
 const CartPage = () => {
@@ -6,7 +7,10 @@ const CartPage = () => {
         <div className='cart-card-container'>
             <CartCard/>
         </div>
-        <div className='cart-page-pay'>payment</div>
+        <hr/>
+        <div className='cart-page-pay'>
+            <PaymentDetailForm/>
+        </div>
     </div>
   )
 }
