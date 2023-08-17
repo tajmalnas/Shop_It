@@ -40,3 +40,12 @@
         
     }
 }
+@media screen and (max-width: 368px) {
+    .brand-container{
+        margin-left: 0rem;
+    }
+    .brand{
+        height: 20rem;
+        
+    }
+}

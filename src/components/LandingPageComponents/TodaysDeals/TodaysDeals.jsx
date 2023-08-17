@@ -10,7 +10,7 @@ const TodaysDeals = () => {
         const data = await res.json();
         if(data.products.length>0){
             setProducts(data.products);
-            console.log(data.products);
+            // console.log(data.products);
         }
         else{
             console.log("No data found");
