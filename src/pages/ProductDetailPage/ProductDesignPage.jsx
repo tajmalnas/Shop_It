@@ -50,6 +50,7 @@ const ProductDesignPage = () => {
                             <button>-</button>
                         </div>
                         <button className="add-to-cart">Add to Cart</button>
+                        <button className="buy-now">Buy Now</button>
                     </div>
                 </section>
             </div>
