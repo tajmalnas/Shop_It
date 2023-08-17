@@ -42,7 +42,7 @@ const PaymentDetailForm = () => {
         </div>
         <hr/>
         <div className="total-section">
-            <div className="total-text">Total</div>
+            <div className="total-text">Grand Total</div>
             <div className="total-price">$100</div>
         </div>
         <div className="payment-button">
