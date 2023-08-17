@@ -1,24 +1,45 @@
 import Input from "../../UI/Input";
+import { Link,useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import 'primeicons/primeicons.css';
+
+
+
 const Navbar = () => {
+    const navigate = useNavigate();
+    const dealsSection = () => {
+        navigate("/");
+        window.scrollTo({
+            top: window.innerHeight*3,
+            behavior: 'smooth'
+          });
+    }
+    const forYouSection = () => {
+        navigate("/");
+        window.scrollTo({
+            top: window.innerHeight*1.3,
+            behavior: 'smooth'
+          });
+    }
   return (
     <div className="wrapper" >
         <div className="navbar">
             <div className="shop-it">
                 <img className="shop-it-img" src="/assets/pngwing.com.png" ></img>
-                <span className="shop-it-text">
+                <Link to="/"><span className="shop-it-text">
                     shop-It
                 </span>
+                </Link>
                 
             </div>
             <div className="tabs">
-                <div className="categories">
+                <Link to = "/product-listing"><div className="categories">
                     Catagories 
                 </div>
+                </Link>
                 <div className="different-section" >
-                    <div style={{paddingRight:"1rem"}}>Deals</div>
-                    <div style={{paddingRight:"1rem"}}>Whats New</div>
+                    <div style={{paddingRight:"1rem"}} onClick={dealsSection}>Deals</div>
+                    <div style={{paddingRight:"1rem"}} onClick={forYouSection}>Whats New</div>
                     <div style={{paddingRight:"1rem"}}>Delivery</div>
                 </div>
             </div>
@@ -30,10 +51,11 @@ const Navbar = () => {
                     <i className="pi pi-user" style={{paddingRight:".1rem"}}></i>
                     Account
                 </div>
-                <div className="cart" >
-                <i className="pi pi-shopping-cart" style={{paddingRight:".1rem"}}></i>
+                <Link to="/cart"><div className="cart" >
+               <i className="pi pi-shopping-cart" style={{paddingRight:".1rem"}}></i>
                     Cart
                 </div>
+                </Link>
             </div>
         </div>
     </div>

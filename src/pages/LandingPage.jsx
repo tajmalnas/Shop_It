@@ -86,8 +86,8 @@ const LandingPage = () => {
       <div className="searchBar">
         <Input name={"main"} />
       </div>
-      <CategoryDisplay />
-      <BestDeals />
+      <CategoryDisplay id="category-display-section" />
+      <BestDeals id="deals-section" />
       <ChooseBrand />
       <CashBackBanner />
       <TodaysDeals />

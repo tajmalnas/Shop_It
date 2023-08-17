@@ -23,6 +23,7 @@
     object-fit: cover;
     border-radius: 1rem;
     margin-top: 1rem;
+    margin-left: 1rem;
 }
 
 .cart-card-image img{

@@ -30,6 +30,7 @@
 .different-section{
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 .acc-and-cart{
     display: flex;
@@ -42,6 +43,7 @@
     border: solid grey 0px;
     background-color: rgb(240, 240, 240);
 }
+
 
 @media screen and (max-width: 798px) {
     .different-section{
