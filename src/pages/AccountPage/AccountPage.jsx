@@ -1,4 +1,5 @@
-import LoginForm from '../../Forms/LoginForm/LoginForm'
+// import LoginForm from '../../Forms/LoginForm/LoginForm'
+import SideBar from '../../UI/SideBar/SideBar'
 import Navbar from '../../components/LandingPageComponents/Navbar'
 import './AccountPage.css'
 
@@ -7,9 +8,10 @@ const AccountPage = () => {
     <>
     <Navbar/>
     <hr/>
-    <div className='account-page'>
+    {/* <div className='account-page'>
         <LoginForm/>
-    </div>
+    </div> */}
+    <SideBar/>
     </>
   )
 }
