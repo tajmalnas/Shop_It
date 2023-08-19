@@ -6,6 +6,7 @@
     background-color: #f4f7fa;
     border: 1px solid #ccc;
     border-radius: 5px;
+    
   }
   
   .subtotal-section,
@@ -82,6 +83,7 @@
     .payment-detail-form {
       padding: 10px;
       max-width: 90%;
+      margin-top: 1rem;
     }
   
     .subtotal-section,

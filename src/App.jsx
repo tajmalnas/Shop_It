@@ -5,6 +5,7 @@ import ProductDesignPage from './pages/ProductDetailPage/ProductDesignPage';
 import CartPage from './pages/CartPage/CartPage';
 import 'primeicons/primeicons.css';
 import './App.css';
+import AccountPage from './pages/AccountPage/AccountPage';
 
 
 const App = () => {
@@ -13,8 +14,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/product-listing" element={<ProductListing />} />
-        <Route path="/product-design" element={<ProductDesignPage />} />
+        <Route path="/product-detail" element={<ProductDesignPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/account" element={<AccountPage/>}/>
       </Routes>
     </div>
   );

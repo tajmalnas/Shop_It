@@ -8,6 +8,12 @@
     align-items: center;
     margin-right:1rem;
     margin-bottom: 1rem;
+    box-shadow: 0.3rem 0.3rem rgba(0, 0, 0, 0.514);
+}
+
+.brand-card:hover{
+    box-shadow: 0.15rem 0.15rem rgba(0, 0, 0, 0.514);
+    transform: translate(0.15rem, 0.15rem);
 }
 
 .brand-card-img img{
