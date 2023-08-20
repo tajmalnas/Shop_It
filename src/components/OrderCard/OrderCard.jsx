@@ -1,4 +1,4 @@
-import './OrderCart.css'
+import './OrderCard.css'
 const OrderCart = () => {
   return (
     <div className='cart-card-container'>

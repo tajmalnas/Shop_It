@@ -1,5 +1,4 @@
-// import CartCard from '../../components/CartCard/CartCard'
-import OrderCart from '../../components/OrderCart/OrderCart'
+import OrderCart from '../../components/OrderCard/OrderCard'
 import './OrderSection.css'
 const OrderSection = () => {
   return (

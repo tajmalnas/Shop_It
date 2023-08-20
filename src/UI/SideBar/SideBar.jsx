@@ -33,7 +33,7 @@ function SideBar() {
           </div>
           <div className="sidebar-item">
             <div className="sidebar-item-icon">ℹ️</div>
-            <div className="sidebar-item-text">About</div>
+            <div className="sidebar-item-text">Feedback</div>
           </div>
         </motion.div>
       );
