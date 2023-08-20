@@ -2,6 +2,7 @@ import './CartCard.css'
 
 const CartCard = () => {
   return (
+    <div className='cart-card-container'>
     <div className='cart-card'>
         
         <div className='cart-card-image-and-name'>
@@ -18,6 +19,7 @@ const CartCard = () => {
             </div>
         </div>
         <div className='cart-card-total-price'>Total Price</div>
+    </div>
     </div>
   )
 }

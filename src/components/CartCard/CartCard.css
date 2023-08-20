@@ -72,12 +72,19 @@
     font-weight: 800;
 }
 @media screen and (max-width: 500px){
+    .cart-card-container{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+    }
     .cart-card{
+        width: 90%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         border: 1px solid rgb(0, 0, 0);
         border-radius: 1rem;
+        background-color:#4f22f015;
     }
     .cart-card-image-and-name{
         flex-direction: column;
@@ -85,7 +92,7 @@
         align-items: center;
     }
     .cart-card-image{
-        width: 100%;
+        width: 90%;
         height: 100%;
         object-fit: cover;
         border-radius: 1rem;

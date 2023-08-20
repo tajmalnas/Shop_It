@@ -1,6 +1,12 @@
 .account-page{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+}
+
+@media (max-width: 600px) {
+    .account-page{
+        display: flex;
+        flex-direction: column;
+    }
 }
