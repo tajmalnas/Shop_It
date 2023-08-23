@@ -1,11 +1,9 @@
-import Categories from '../../../data/database';
+import { useSelector } from 'react-redux'
 import ProductCard from '../../../components/ProductCard/ProductCard'
-
 import './ProductsList.css'
 
-
 const ProductListing = () => {
-    
+    const Categories = useSelector((state)=>state.productlist.value)
   return (
     <>
     <div className='product-listing-section'>

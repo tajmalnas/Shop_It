@@ -8,6 +8,7 @@
 
 .shop-it{
     display: flex;
+    width: 100%;
     margin-left: 2%;
     font-size: 1.5rem;
     margin-top: -5px;
@@ -25,6 +26,9 @@
 .categories{
     display: flex;
     margin-right: 2rem;
+    &:hover{
+        border-bottom: solid rgb(119, 218, 199) 2px;
+    }
 }
 
 .different-section{
@@ -36,6 +40,23 @@
     display: flex;
     justify-content: space-between;
     margin-right: 10px;
+    .account{
+        display: flex;
+    }
+    .account div{
+        &:hover{
+            border-bottom: solid  rgb(119, 218, 199) 2px;
+        }
+    }
+    .cart{
+        display: flex;
+       
+    }
+    .cart div{
+        &:hover{
+            border-bottom: solid rgb(119, 218, 199) 2px;
+        }
+    }
 }
 .search-bar{
     height: 20px;

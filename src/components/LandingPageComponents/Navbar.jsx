@@ -2,9 +2,7 @@ import Input from "../../UI/Input";
 import { Link,useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import 'primeicons/primeicons.css';
-
-
-
+import Tooltip from '@mui/material/Tooltip';
 const Navbar = () => {
     const navigate = useNavigate();
     const dealsSection = () => {
@@ -24,17 +22,16 @@ const Navbar = () => {
   return (
     <div className="wrapper" >
         <div className="navbar">
-            <div className="shop-it">
+        <Link to="/"><div className="shop-it">
                 <img className="shop-it-img" src="/assets/pngwing.com.png" ></img>
-                <Link to="/"><span className="shop-it-text">
+                <span className="shop-it-text">
                     shop-It
                 </span>
-                </Link>
-                
             </div>
+        </Link>
             <div className="tabs">
                 <Link to = "/product-listing"><div className="categories">
-                    Catagories 
+                    <Tooltip title="click to see products" >Catagories</Tooltip>
                 </div>
                 </Link>
                 <div className="different-section" >
@@ -47,13 +44,14 @@ const Navbar = () => {
                 <Input className="search-bar" name={"nav"}/>
             </div>
             <div className="acc-and-cart">
-                <div className="account" style={{paddingRight:".7rem"}}>
+               <Link to="/account"><div className="account" style={{paddingRight:".7rem"}}>
                     <i className="pi pi-user" style={{paddingRight:".1rem"}}></i>
-                    Account
+                    <div>Account</div>
                 </div>
+                </Link> 
                 <Link to="/cart"><div className="cart" >
                <i className="pi pi-shopping-cart" style={{paddingRight:".1rem"}}></i>
-                    Cart
+                    <div>Cart</div>
                 </div>
                 </Link>
             </div>
