@@ -3,6 +3,10 @@ import { Link,useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import 'primeicons/primeicons.css';
 import Tooltip from '@mui/material/Tooltip';
+import { useDispatch } from "react-redux";
+import { addCategory } from "../../redux/categoryFilter";
+
+
 const Navbar = () => {
     const navigate = useNavigate();
     const dealsSection = () => {
@@ -19,6 +23,13 @@ const Navbar = () => {
             behavior: 'smooth'
           });
     }
+
+    const dispatch = useDispatch();
+
+    const clickHandler = () => {
+        dispatch(addCategory("Electronics"))
+    }
+
   return (
     <div className="wrapper" >
         <div className="navbar">
@@ -29,7 +40,7 @@ const Navbar = () => {
                 </span>
             </div>
         </Link>
-            <div className="tabs">
+            <div className="tabs" onClick={clickHandler}>
                 <Link to = "/product-listing"><div className="categories">
                     <Tooltip title="click to see products" >Catagories</Tooltip>
                 </div>

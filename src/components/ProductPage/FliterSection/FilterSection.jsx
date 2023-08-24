@@ -1,7 +1,25 @@
 /* eslint-disable no-undef */
 import './FilterSection.css'
-import Categories from '../../../data/database'
+import { useSelector,useDispatch } from 'react-redux';
+import { addCategory,removeCategory } from '../../../redux/categoryFilter.js'
 const FilterSection = () => {
+    const Categories = useSelector((state)=>state.productlist.value);
+    const categoryFilterArray = useSelector((state)=>state.categoryFilter.value);
+
+    const isCategoryChecked = (categoryName) => {
+        return categoryFilterArray.includes(categoryName);
+    };
+
+    const dispatch = useDispatch();
+
+    const clickHandler = (e) => {
+        if(e.target.checked){
+            dispatch(addCategory(e.target.value));
+        }else{
+            dispatch(removeCategory(e.target.value));
+        }
+    }
+
   return (
     <div className='filter-section'>
         <div className='filter-container'>
@@ -13,7 +31,14 @@ const FilterSection = () => {
                 <h4>Category</h4>
                 {Categories.map((category) => (
                     <div className='category-item' key={category.id}>
-                        <input type='checkbox' id={category.id} name={category.name} value={category.name}></input>
+                        <input 
+                            type='checkbox' 
+                            id={category.id} 
+                            name={category.name} 
+                            value={category.name}
+                            checked={isCategoryChecked(category.name)}
+                            onChange={clickHandler}
+                            />
                         <label htmlFor={category.name}>{category.name}</label>
                     </div>
                 ))}
