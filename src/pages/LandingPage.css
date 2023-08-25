@@ -3,8 +3,12 @@ body{
 }
 
 .searchBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 1rem;
     text-align: center;
+    position: relative;
 }
 
 @media screen and (max-width: 500px) {

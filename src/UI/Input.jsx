@@ -1,19 +1,32 @@
 /* eslint-disable react/prop-types */
-import './Input.css'
+import { useEffect, useState } from 'react';
+import './Input.css';
 import 'primeicons/primeicons.css';
-        
 
 const Input = (props) => {
+  const [inputValue, setInputValue] = useState('');
+
+  useEffect(()=>{
+    props.setSearchValue(inputValue);
+  },[inputValue, props])
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
   const name = props.name;
+  const class1 = "search-bar-" + name.toString();
 
-   const but="but-"+name; 
-  const class1 = "search-bar-"+name.toString();
-    return (
+  return (
     <div className='input-field'>
-        <input className={class1} defaultValue="search product"></input>  
-        <button className={but}><span className="pi pi-search"></span></button>
+      <input
+        className={class1}
+        placeholder="search product"
+        value={inputValue}
+        onChange={handleInputChange}
+      />
     </div>
-    )
-}
+  );
+};
 
-export default Input
+export default Input;

@@ -27,7 +27,7 @@ const TodaysDeals = () => {
         Todays Best Deals For You
     </div>
     <div className='todays-deals-section' >
-        {products.slice(0,20).map((product) => <ProductCard key={product.id} img={product.images[0]} name={product.title} description={product.description} rating={product.rating} price={product.price} />)}
+        {products.slice(0,20).map((product) => <ProductCard key={product.id} id={product.id*100000} img={product.images[0]} name={product.title} description={product.description} rating={product.rating} price={product.price} />)}
     </div>
     </div>
   )

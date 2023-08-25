@@ -10,7 +10,10 @@ import TodaysDeals from "../components/LandingPageComponents/TodaysDeals/TodaysD
 import "./LandingPage.css"
 import SimpleReactFooter from "simple-react-footer";
 import { useState, useEffect } from 'react';
+import SearchResults from "../UI/SearchResultsBox/SearchResults"
 const LandingPage = () => {
+
+  const [searchValue, setSearchValue] = useState('');
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -84,7 +87,8 @@ const LandingPage = () => {
       <Navbar />
       <HeroBanner />
       <div className="searchBar">
-        <Input name={"main"} />
+        <Input name={"main"} setSearchValue={setSearchValue} />
+        <SearchResults name = {""} inputValue={searchValue} />
       </div>
       <CategoryDisplay id="category-display-section" />
       <BestDeals id="deals-section" />

@@ -65,6 +65,9 @@
     background-color: rgb(240, 240, 240);
 }
 
+.search-in-nav{
+    position: relative;
+}
 
 @media screen and (max-width: 798px) {
     .different-section{
@@ -90,7 +93,7 @@
 }
 }
 @media screen and (max-width: 440px) {
-    .search{
+    .search-in-nav{
         display: none;
     }    
 }

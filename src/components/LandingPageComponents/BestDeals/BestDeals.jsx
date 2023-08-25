@@ -72,7 +72,7 @@ const BestDeals = () => {
           description: 'Versatile kitchen appliance for baking and cooking',
           rating: 95,
           img: 'https://hips.hearstapps.com/hmg-prod/images/gh-121721-best-stand-mixers-1639690990.png?crop=1.00xw:0.773xh;0,0.182xh&resize=1200:*',
-          price: '299',
+          price: '30',
         },
         {
           id: 9,
@@ -88,7 +88,7 @@ const BestDeals = () => {
           description: 'Premium noise-canceling headphones',
           rating: 108,
           img: 'https://www.soundguys.com/wp-content/uploads/2021/04/bose-noise-cancelling-headphones-700-product-image-format.jpg',
-          price: '349',
+          price: '60',
         },
       ];
       
@@ -116,7 +116,7 @@ const BestDeals = () => {
           )}
         >
           {BestDealsArray.map((item) => (
-            <ProductCard key={item.id} name={item.name} img={item.img} description={item.description} price={item.price} rating={item.rating} />
+            <ProductCard key={item.id} id={item.id*1000} name={item.name} img={item.img} description={item.description} price={item.price} rating={item.rating}/>
           ))}
         </Carousel>
         </div>

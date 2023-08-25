@@ -5,9 +5,14 @@ import 'primeicons/primeicons.css';
 import Tooltip from '@mui/material/Tooltip';
 import { useDispatch } from "react-redux";
 import { addCategory } from "../../redux/categoryFilter";
+import SearchResults from "../../UI/SearchResultsBox/SearchResults";
+import { useState } from "react";
 
 
 const Navbar = () => {
+
+    const [searchValue, setSearchValue] = useState('');
+
     const navigate = useNavigate();
     const dealsSection = () => {
         navigate("/");
@@ -51,8 +56,9 @@ const Navbar = () => {
                     <div style={{paddingRight:"1rem"}}>Delivery</div>
                 </div>
             </div>
-            <div className="search" >
-                <Input className="search-bar" name={"nav"}/>
+            <div className="search-in-nav" >
+                <Input className="search-bar" name={"nav"} setSearchValue={setSearchValue} />
+                <SearchResults name={"nav"} inputValue={searchValue} />
             </div>
             <div className="acc-and-cart">
                <Link to="/account"><div className="account" style={{paddingRight:".7rem"}}>

@@ -10,6 +10,7 @@
     flex-direction: column;
     border: 0px;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.13);
+    cursor: pointer;
 }
 .card-product.show{
     opacity: 1;
@@ -27,6 +28,7 @@
     top:0.2rem;
     right: 0.2rem;
 }
+
 .card-product-img img{
     width: 100%;
     height: 11rem;
@@ -75,9 +77,10 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .add-to-cart{
-    background-color: transparent;
+    background-color: rgba(1, 168, 245, 0.075);
     border-radius: 1rem;
     border:solid black 1px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 568px){
