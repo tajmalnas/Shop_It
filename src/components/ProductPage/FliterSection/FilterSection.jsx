@@ -2,15 +2,31 @@
 import './FilterSection.css'
 import { useSelector,useDispatch } from 'react-redux';
 import { addCategory,removeCategory } from '../../../redux/categoryFilter.js'
+import { addPrice } from '../../../redux/priceFilter.js'
+import { addRating } from '../../../redux/ratingFilter';
 const FilterSection = () => {
+
+    const selectedPrice = useSelector((state)=>state.priceFilter.value);
+
+    const dispatch = useDispatch();
+
+    const priceClickHandler = (e) => {
+        dispatch(addPrice(e.target.value)); 
+    };
+
+    const selectedRating = useSelector((state)=>state.ratingFilter.value);
+    
+    const ratingClickHandler = (e) => {
+        dispatch(addRating(e.target.value))
+        console.log(e.target.value);
+    };
+
     const Categories = useSelector((state)=>state.productlist.value);
     const categoryFilterArray = useSelector((state)=>state.categoryFilter.value);
 
     const isCategoryChecked = (categoryName) => {
         return categoryFilterArray.includes(categoryName);
     };
-
-    const dispatch = useDispatch();
 
     const clickHandler = (e) => {
         if(e.target.checked){
@@ -19,7 +35,6 @@ const FilterSection = () => {
             dispatch(removeCategory(e.target.value));
         }
     }
-
   return (
     <div className='filter-section'>
         <div className='filter-container'>
@@ -45,31 +60,97 @@ const FilterSection = () => {
             </div>
             <div className='price'>
                 <h4>Price</h4>
-                <input type='checkbox' id='price1' name='price1' value='price1'></input>
-                <label htmlFor='price1'>0-100</label>
+                <input
+                    type='radio'
+                    id='price1'
+                    name='price'
+                    value='100'
+                    checked={selectedPrice === '100'}
+                    onChange={priceClickHandler}
+                />
+                <label htmlFor='price1'>{' < '}100</label>
                 <br/>
-                <input type='checkbox' id='price2' name='price2' value='price2'></input>
-                <label htmlFor='price2'>100-200</label>
+                <input
+                    type='radio'
+                    id='price1'
+                    name='price'
+                    value='200'
+                    checked={selectedPrice === '200'}
+                    onChange={priceClickHandler}
+                />              
+                <label htmlFor='price2'>{' < '}200</label>
                 <br/>
-                <input type='checkbox' id='price3' name='price3' value='price3'></input>
-                <label htmlFor='price3'>200-300</label>
+                <input
+                    type='radio'
+                    id='price1'
+                    name='price'
+                    value='300'
+                    checked={selectedPrice === '300'}
+                    onChange={priceClickHandler}
+                />
+                <label htmlFor='price3'>{' < '}300</label>
                 <br/>
-                <input type='checkbox' id='price4' name='price4' value='price4'></input>
-                <label htmlFor='price4'>300-400</label>
+                <input
+                    type='radio'
+                    id='price1'
+                    name='price'
+                    value='400'
+                    checked={selectedPrice === '400'}
+                    onChange={priceClickHandler}
+                />
+                <label htmlFor='price4'>{' < '}400</label>
                 <br/>
-                <input type='checkbox' id='price5' name='price5' value='price5'></input>
-                <label htmlFor='price5'> {' > '}500</label>
+                <input
+                    type='radio'
+                    id='price1'
+                    name='price'
+                    value='500'
+                    checked={selectedPrice === '500'}
+                    onChange={priceClickHandler}
+                />
+                <label htmlFor='price5'> ALL</label>
             </div>
             <div className='rating'>
                 <h4>Rating</h4>
-                <input type='checkbox' id='rating1' name='rating1' value='rating1'></input>
+                <input
+                    type='radio'
+                    id='rating1'
+                    name='rating'
+                    value='less'
+                    checked={selectedRating === 'less'}
+                    onChange={ratingClickHandler}
+                />
                 <label htmlFor='rating1'>Less Rated</label>
-                <br/>
-                <input type='checkbox' id='rating2' name='rating2' value='rating2'></input>
+                <br />
+                <input
+                    type='radio'
+                    id='rating2'
+                    name='rating'
+                    value='average'
+                    checked={selectedRating === 'average'}
+                    onChange={ratingClickHandler}
+                />
                 <label htmlFor='rating2'>Average rated</label>
-                <br/>
-                <input type='checkbox' id='rating3' name='rating3' value='rating3'></input>
+                <br />
+                <input
+                    type='radio'
+                    id='rating3'
+                    name='rating'
+                    value='high'
+                    checked={selectedRating === 'high'}
+                    onChange={ratingClickHandler}
+                />
                 <label htmlFor='rating3'>Highly Rated</label>
+                <br />
+                <input
+                    type='radio'
+                    id='rating3'
+                    name='rating'
+                    value='all'
+                    checked={selectedRating === 'all'}
+                    onChange={ratingClickHandler}
+                />
+                <label htmlFor='rating3'>All</label>
             </div>
         </div>
     </div>
