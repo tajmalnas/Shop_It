@@ -201,7 +201,7 @@ const Categories = [
             "description": "Cozy hoodie for both men and women",
             "rating": 90,
             "img": "https://www.thesun.co.uk/wp-content/uploads/2022/12/image-1072.png?strip=all&w=859",
-            "price": "40"
+            "price": 40
           },
           {
             "id": 24,
@@ -217,7 +217,7 @@ const Categories = [
             "description": "Casual and trendy dress for women",
             "rating": 90,
             "img": "https://esposagroup.com/wp-content/uploads/2022/01/smart-casual-dress-code.jpg",
-            "price": "70"
+            "price": 70
           },
           {
             "id": 26,

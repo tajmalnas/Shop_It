@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
 import './ProductDetailsDetail.css'
-const ProductDetailsDetail = () => {
+const ProductDetailsDetail = ({description}) => {
   return (
-    <div>ProductDetailsDetail</div>
+    <div>
+      {description}
+    </div>
   )
 }
 

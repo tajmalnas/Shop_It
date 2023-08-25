@@ -7,19 +7,25 @@ import { useState } from "react";
 import ProductDetailsDetail from "../../components/ProductDetailComponents/ProductDetailsDetail/ProductDetailsDetail";
 import RatingAndReview from "../../components/ProductDetailComponents/RatingAndReview/RatingAndReview";
 import ProductDisscussion from "../../components/ProductDetailComponents/ProductDiscussion/ProductDisscussion";
+import { useSelector } from "react-redux";
 
-const tabOptions = [
-    { label: "Details", component: <ProductDetailsDetail /> },
-    { label: "Rating and Reviews", component: <RatingAndReview /> },
-    { label: "Discussion", component: <ProductDisscussion /> },
-];
+
 
 const ProductDesignPage = () => {
+
 
     const [value, setValue] = useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const productDetail = useSelector((state)=>(state.productDetail.value));
+
+    const tabOptions = [
+        { label: "Details", component: <ProductDetailsDetail description = {productDetail.description} /> },
+        { label: "Rating and Reviews", component: <RatingAndReview /> },
+        { label: "Discussion", component: <ProductDisscussion /> },
+    ];
 
   return (
     <div>
@@ -28,12 +34,12 @@ const ProductDesignPage = () => {
         <div className="product-design-page">
             <div className="product-design-upper">
                 <section className="product-design-upper-left">
-                    <img src="https://media.istockphoto.com/id/675403536/photo/canon-5d-mark-iv.jpg?s=612x612&w=0&k=20&c=r7TMFyKN9B6Telc6gXPmgYcfqWBF7eQVs0wwh54lyrc="></img>
+                    <img src={productDetail.img}></img>
                 </section>
                 <section className="product-design-upper-right">
-                    <h2 className="hh">product name</h2>
+                    <h2 className="hh">{productDetail.name}</h2>
                     <p className="pp">⭐⭐⭐⭐</p>
-                    <h3>3000</h3>
+                    <h3>${productDetail.price}</h3>
                     <hr/>
                     <h4>Size</h4>
                     <div className="sizes">
@@ -46,7 +52,7 @@ const ProductDesignPage = () => {
                     <div className="quantity">
                         <div className="button-div">
                             <button>+</button>
-                            <p>10</p>
+                            <p>1</p>
                             <button>-</button>
                         </div>
                         <button className="add-to-cart">Add to Cart</button>

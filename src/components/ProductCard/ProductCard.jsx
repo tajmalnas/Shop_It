@@ -1,8 +1,22 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from 'react-router-dom';
 import './ProductCard.css'
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductDetail } from '../../redux/productDetail';
 
 const ProductCard = (props) => {
+
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+    const productDetail = useSelector((state)=>(state.productDetail.value));
+    const clickHandler = (id,name,price,img,description,rating) => {
+      console.log(productDetail);
+      dispatch(setProductDetail({id,name,price,img,description,rating}));
+      navigate(`/product-detail/${id}${encodeURIComponent(name)}`);
+    }
+
     useEffect(() => {
         const cards = document.querySelectorAll(".card-product");
         const observer = new IntersectionObserver(entries => {
@@ -20,7 +34,7 @@ const ProductCard = (props) => {
         } 
     );
   return (
-    <div className='card-product'>
+    <div className='card-product' onClick={()=>clickHandler(props.id,props.name,props.price,props.img,props.description,props.rating)}>
         <div className='card-product-img'>
             <img src={props.img}></img>
             <div className='like'><i className='pi pi-heart'></i></div>
