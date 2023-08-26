@@ -13,7 +13,6 @@ import { useSelector } from "react-redux";
 
 const ProductDesignPage = () => {
 
-
     const [value, setValue] = useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -21,10 +20,11 @@ const ProductDesignPage = () => {
 
     const productDetail = useSelector((state)=>(state.productDetail.value));
     console.log(productDetail);
+
     const tabOptions = [
         { label: "Details", component: <ProductDetailsDetail description = {productDetail.description} /> },
-        { label: "Rating and Reviews", component: <RatingAndReview product = {productDetail.id} /> },
-        { label: "Discussion", component: <ProductDisscussion /> },
+        { label: "Rating and Reviews", component: <RatingAndReview id = {productDetail.id} /> },
+        { label: "Discussion", component: <ProductDisscussion id = {productDetail.id} /> },
     ];
     var [productDetail1, setProductDetail1] = useState({...productDetail,quantity:1});
 
