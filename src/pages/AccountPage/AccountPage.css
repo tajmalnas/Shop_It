@@ -4,6 +4,13 @@
     gap: 2rem;
 }
 
+.account-page-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 600px) {
     .account-page{
         display: flex;

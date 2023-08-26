@@ -37,6 +37,7 @@ const ProductListing = () => {
                   price={product.price}
                   rating={product.rating}
                   img={product.img}
+                  description={product.description}
                 />
               );
             } else {

@@ -1,4 +1,5 @@
-// import LoginForm from '../../Forms/LoginForm/LoginForm'
+import { useSelector } from 'react-redux';
+import LoginForm from '../../Forms/LoginForm/LoginForm'
 import OrderSection from '../../Sections/OrdersSection/OrderSection'
 import FeedbackForm from '../../Forms/FeedbackForm/FeedbackForm'
 import Setting from '../../Sections/SettingSection/Setting'
@@ -10,6 +11,9 @@ import { useState } from 'react'
 import { motion } from 'framer-motion' 
 
 const AccountPage = () => {
+
+  const isAuth = useSelector((state) => state.isAuth.value);
+  console.log(isAuth);  
 
   const [childData, setChildData] = useState('account');
 
@@ -35,10 +39,10 @@ const AccountPage = () => {
     <>
     <Navbar/>
     <hr/>
-    {/* <div className='account-page'>
+    {!isAuth && <div className='account-page-form'>
         <LoginForm/>
-    </div> */}
-    <div className='account-page'>
+    </div>}
+    {isAuth && <div className='account-page'>
     <SideBar onDataUpdate={handleChildData} />
     <motion.div  animate={{x:["15rem","0rem"]}} transition={{
             duration: 0.5,
@@ -48,7 +52,7 @@ const AccountPage = () => {
           }}>
       {content}
     </motion.div>
-    </div>
+    </div>}
     </>
   )
 }

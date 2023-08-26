@@ -1,14 +1,14 @@
+/* eslint-disable no-undef */
 import Navbar from "../../components/LandingPageComponents/Navbar"
 import './ProductDesignPage.css'
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductDetailsDetail from "../../components/ProductDetailComponents/ProductDetailsDetail/ProductDetailsDetail";
 import RatingAndReview from "../../components/ProductDetailComponents/RatingAndReview/RatingAndReview";
 import ProductDisscussion from "../../components/ProductDetailComponents/ProductDiscussion/ProductDisscussion";
 import { useSelector } from "react-redux";
-
 
 
 const ProductDesignPage = () => {
@@ -20,12 +20,27 @@ const ProductDesignPage = () => {
     };
 
     const productDetail = useSelector((state)=>(state.productDetail.value));
-
+    console.log(productDetail);
     const tabOptions = [
         { label: "Details", component: <ProductDetailsDetail description = {productDetail.description} /> },
-        { label: "Rating and Reviews", component: <RatingAndReview /> },
+        { label: "Rating and Reviews", component: <RatingAndReview product = {productDetail.id} /> },
         { label: "Discussion", component: <ProductDisscussion /> },
     ];
+    var [productDetail1, setProductDetail1] = useState({...productDetail,quantity:1});
+
+    const counter = (type) => {
+        if(type === "inc"){
+            setProductDetail1({...productDetail1,quantity:productDetail1.quantity+1});
+        }
+        else{
+            if(productDetail1.quantity > 1){
+                setProductDetail1({...productDetail1,quantity:productDetail1.quantity-1});
+            }
+        }
+    }
+    useEffect(()=>{
+        setProductDetail1({...productDetail,quantity:1});
+    },[productDetail]);
 
   return (
     <div>
@@ -41,19 +56,17 @@ const ProductDesignPage = () => {
                     <p className="pp">⭐⭐⭐⭐</p>
                     <h3>${productDetail.price}</h3>
                     <hr/>
-                    <h4>Size</h4>
+                    <h4>Description</h4>
                     <div className="sizes">
-                        <button>S</button>
-                        <button>M</button>
-                        <button>L</button>
+                        {productDetail.description}
                     </div>
                     <hr/>
                     <h4>Quantity</h4>
                     <div className="quantity">
                         <div className="button-div">
-                            <button>+</button>
-                            <p>1</p>
-                            <button>-</button>
+                            <button onClick={()=>counter("inc")}>+</button>
+                            <p>{productDetail1.quantity}</p>
+                            <button onClick={()=>counter("dec")}>-</button>
                         </div>
                         <button className="add-to-cart">Add to Cart</button>
                         <button className="buy-now">Buy Now</button>

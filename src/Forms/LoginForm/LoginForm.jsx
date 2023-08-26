@@ -1,5 +1,11 @@
+/* eslint-disable no-undef */
+import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
+import {auth,db} from '../../FirebaseConfig/FirebaseConfig';
+import { createUserWithEmailAndPassword, } from "firebase/auth";
+import { useDispatch } from 'react-redux';
 import './LoginForm.css'
+import { setAuth } from '../../redux/isAuth';
 
 const LoginForm = () => {
   const [isSignup, setIsSignup] = useState(true);
@@ -18,10 +24,41 @@ const LoginForm = () => {
     setLast('');
   };
 
+  const signIn = async (email, password, first, last, username) => {
+    if (password.length < 6) {
+      alert('Password should be at least 6 characters long');
+      return;
+    }
+  
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+  
+      const userDocRef = doc(db, 'users', user.email);
+  
+      const userData = {
+        username,
+        email,
+        first,
+        last,
+        cart: [],
+        order:[]
+      };
+  
+      await setDoc(userDocRef, userData);
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
+  };
+
+  const dispatch = useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (isSignup) {
-      
+      signIn(email, password,first,last,username);
+      dispatch(setAuth(true));
+      localStorage.setItem('isAuthenticated', 'true');
       console.log('Sign up:', { username, email, password });
     } else {
       
