@@ -11,7 +11,7 @@ const OrderCart = () => {
         <div className='cart-card-price-and-delete-and-quantity'>
             <div className='cart-card-price'>Price</div>
             <div className='cart-card-quantity'>
-                <div className='cart-card-quantity-number'>1</div>
+                <div className='cart-card-quantity-number' style={{display:'flex',marginBottom:"0.3rem"}}>1</div>
                 <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>Quantity</div>
             </div>
         </div>

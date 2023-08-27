@@ -1,21 +1,56 @@
-import './DiscussCard.css'
-const DiscussCard = () => {
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import './DiscussCard.css';
+import { auth, db } from '../../FirebaseConfig/FirebaseConfig';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+const DiscussCard = (props) => {
+  const [user, setUser] = useState(null);
+
+  const [authUser] =  useAuthState(auth);
+  useEffect(() => {
+    if (authUser) {
+      setUser(authUser);
+    }
+  }, [authUser]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {      
+        if (authUser) {
+          const userDocRef = doc(db, 'users', authUser.email); 
+          const userDocSnapshot = await getDoc(userDocRef);
+
+          if (userDocSnapshot.exists()) {
+            const userData = userDocSnapshot.data();
+            setUser({ ...authUser, ...userData }); 
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [authUser]);
+
+  const fullName = user ? `${user.first} ${user.last}` : '';
   return (
     <div className="discuss-card">
-        <div className="discuss-card-img">
-            <img src="https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?cs=srgb&dl=pexels-tu%E1%BA%A5n-ki%E1%BB%87t-jr-1391498.jpg&fm=jpg"></img>
+      <div className="discuss-card-img">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User" />
+      </div>
+      <div className="discuss-card-info">
+        <div className='discuss-info'>
+          <h4>{fullName}</h4>
         </div>
-        <div className="discuss-card-info">
-            <div className='discuss-info'>
-                <h4>person Name</h4>
-            </div>
-            <div className='actual-discuss'>Discuss Discuss Discuss Discuss Discuss Discuss Discuss Discuss Discuss </div>
-            <div className='discuss-like'>
-            <i className='pi pi-heart'></i>
-            </div>
+        <div className='actual-discuss'>{props.info}</div>
+        <div className='discuss-like'>
+          <i className='pi pi-heart'></i>
         </div>
+      </div>
     </div>
   )
 }
-
-export default DiscussCard
+export default DiscussCard;

@@ -1,16 +1,55 @@
+/* eslint-disable react/prop-types */
+import { doc, getDoc } from 'firebase/firestore';
 import './ReviewCard.css'
-const ReviewCard = () => {
+import { auth, db } from '../../FirebaseConfig/FirebaseConfig';
+import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+const ReviewCard = (props) => {
+
+  const [user, setUser] = useState(null);
+
+  const [authUser] =  useAuthState(auth);
+  useEffect(() => {
+    if (authUser) {
+      setUser(authUser);
+    }
+  }, [authUser]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {      
+        if (authUser) {
+          const userDocRef = doc(db, 'users', authUser.email); 
+          const userDocSnapshot = await getDoc(userDocRef);
+
+          if (userDocSnapshot.exists()) {
+            const userData = userDocSnapshot.data();
+            setUser({ ...authUser, ...userData }); 
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [authUser]);
+
+  const fullName = user ? `${user.first} ${user.last}` : '';
+
   return (
     <div className="review-card">
         <div className="review-card-img">
-            <img src="https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?cs=srgb&dl=pexels-tu%E1%BA%A5n-ki%E1%BB%87t-jr-1391498.jpg&fm=jpg"></img>
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"></img>
         </div>
         <div className="review-card-info">
             <div className='review-info'>
-                <h4>person Name</h4>
-                <p>⭐⭐⭐⭐</p>
+                <h4>{fullName}</h4>
+                {Array.from({length: props.star}, (_, i) => (
+                  <p key={i}>⭐</p>
+                ))}
             </div>
-            <div className='actual-review'>Review Review Review Review Review Review Review Review Review Review Review  </div>
+            <div className='actual-review'>{props.review}</div>
         </div>
     </div>
   )

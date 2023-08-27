@@ -40,7 +40,7 @@ const AccountCard = () => {
 
         <div className='acc-card-lower'>
         <div className='acc-card-lower-name'>
-            <h3>{username}</h3>
+            <h3>@{username}</h3>
           </div>
           <div className='acc-card-lower-name'>
             <h3>{fullName}</h3>

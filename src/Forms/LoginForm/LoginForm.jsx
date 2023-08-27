@@ -2,7 +2,7 @@
 import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import {auth,db} from '../../FirebaseConfig/FirebaseConfig';
-import { createUserWithEmailAndPassword, } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import './LoginForm.css'
 import { setAuth } from '../../redux/isAuth';
@@ -53,7 +53,7 @@ const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (isSignup) {
       signIn(email, password,first,last,username);
@@ -61,8 +61,17 @@ const LoginForm = () => {
       localStorage.setItem('isAuthenticated', 'true');
       console.log('Sign up:', { username, email, password });
     } else {
-      
-      console.log('Login:', { username, password });
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        
+        dispatch(setAuth(true));
+        localStorage.setItem('isAuthenticated', 'true');
+        
+        console.log('Logged in as:', user.email);
+      } catch (error) {
+        console.error('Error signing in:', error);
+      }      
     }
   };
 
@@ -72,9 +81,9 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
@@ -100,10 +109,10 @@ const LoginForm = () => {
         )}
         {isSignup && (
           <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="username"
+            placeholder="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         )}
         <button type="submit">{isSignup ? 'Sign Up' : 'Login'}</button>

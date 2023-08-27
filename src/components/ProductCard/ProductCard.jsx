@@ -32,7 +32,6 @@ const ProductCard = (props) => {
         }
     };
     
-
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
