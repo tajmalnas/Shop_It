@@ -8,11 +8,11 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCart } from '../../redux/cart';
+import { setTotalPrice } from '../../redux/totalPrice';
 const CartPage = () => {
   
   const [user,setUser] = useState(null);
   const [authUser] = useAuthState(auth);
-  const reduxCart = useSelector((state)=>(state.cart.value));
 
   useEffect(() => {
     if(authUser){
@@ -31,11 +31,16 @@ const CartPage = () => {
           console.log(doc.data());
           setCartItems(doc.data().cart);
           dispatch(setCart(doc.data().cart));
+          let total = 0;
+          for(var i=0;i<doc.data().cart.length;i++){
+            total = total + doc.data().cart[i].productPrice*doc.data().cart[i].productQuantity;
+          }
+          dispatch(setTotalPrice(total));
         }
       });
     }
   }, [dispatch, user]);
-
+  const reduxCart = useSelector((state)=>(state.cart.value));
   console.log(cartItems);
   
   return (
@@ -47,10 +52,10 @@ const CartPage = () => {
             {reduxCart.map((item)=>{
                 return <div key={item.id}> <CartCard key={item.id} id={item.id} name={item.productName} price = {item.productPrice} quantity = {item.productQuantity} image={item.productImage} /><hr/></div>
             })}
-            <hr/>
+            <hr key={1}/>
         </div>
         <div className='cart-page-pay'>
-            <PaymentDetailForm/>
+            <PaymentDetailForm check={false} buy={100} />
         </div>
     </div>
     </>

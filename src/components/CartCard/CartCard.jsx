@@ -8,6 +8,7 @@ import { updateDoc } from 'firebase/firestore';
 import { useDispatch} from 'react-redux';
 import { setCart } from '../../redux/cart';
 import { toast } from 'react-hot-toast';
+import { setTotalPrice } from '../../redux/totalPrice';
 const CartCard = (props) => {
 
   const [quantity,setQuantity] = useState( props.quantity);
@@ -21,8 +22,6 @@ const CartCard = (props) => {
       }
     }
   }
-
-
 
   const [user,setUser] = useState(null);
   const [authUser] = useAuthState(auth);
@@ -44,23 +43,31 @@ const CartCard = (props) => {
           updatedCart.push(newCart[i]);
         }
       }
+      
       try {
         await updateDoc(productDocRef, {
           cart:updatedCart
         });
+        const updatedCartNew = (await getDoc(productDocRef)).data().cart;
+        dispatch(setCart(updatedCartNew));
         console.log('Item deleted successfully.');
         const productDocSnapshot = await getDoc(productDocRef);
+        dispatch(setCart(productDocSnapshot.data().cart));
         console.log('Updated Cart Data:', productDocSnapshot.data().cart);
       } catch (error) {
         console.error('Error deleting item:', error);
       }
       finally{
-        dispatch(setCart(updatedCart));
+        let totalPrice = 0;
+        for(var j=0;j<updatedCart.length;j++){
+          totalPrice = totalPrice + updatedCart[j].productPrice*updatedCart[j].productQuantity;
+        }
+        dispatch(setTotalPrice(totalPrice));
         setUiUpdater(uiUpdater+1);
       }
     }
   }
-  
+
   useEffect(() => {
     if (user && user.email) {
       const productDocRef = doc(db, 'users', user.email);
@@ -106,12 +113,17 @@ const CartCard = (props) => {
               cart: updatedCart,
             });
           }
+          let totalPrice = 0;
+          for(var i=0;i<updatedCart.length;i++){
+            totalPrice = totalPrice + updatedCart[i].productPrice*updatedCart[i].productQuantity;
+          }
+          dispatch(setTotalPrice(totalPrice));
         }
       };
   
       updateCart();
     }
-  }, [quantity, user, props.name, props.price, props.image]);
+  }, [quantity, user, props.name, props.price, props.image,dispatch]);
   
   
   return (

@@ -8,13 +8,28 @@ import { useEffect, useState } from "react";
 import ProductDetailsDetail from "../../components/ProductDetailComponents/ProductDetailsDetail/ProductDetailsDetail";
 import RatingAndReview from "../../components/ProductDetailComponents/RatingAndReview/RatingAndReview";
 import ProductDisscussion from "../../components/ProductDetailComponents/ProductDiscussion/ProductDisscussion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {getIsAuthenticatedFromLocalStorage} from "../../utils/localStorage";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db} from "../../FirebaseConfig/FirebaseConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-hot-toast";
+import { Modal } from "@mui/material";
+import PaymentDetailForm from "../../Forms/PaymentDetailForm/PaymentDetailForm";
+import { setCart } from "../../redux/cart";
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
 const ProductDesignPage = () => {
 
@@ -22,6 +37,12 @@ const ProductDesignPage = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const dispatch = useDispatch();
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const [user, setUser] = useState(null);
     const [authUser] = useAuthState(auth);
@@ -52,7 +73,7 @@ const ProductDesignPage = () => {
             }
         }
     }
-
+    
     const navigate = useNavigate();
 
     const addToCartHandler = async () => {
@@ -70,7 +91,33 @@ const ProductDesignPage = () => {
                 const updatedCart = userData.cart || [];
                 updatedCart.unshift({ productName: productDetail.name, productPrice: productDetail.price, productQuantity: productDetail1.quantity ,productImage:productDetail.img});
                 await updateDoc(productDocRef, { cart: updatedCart });
+                dispatch(setCart(updatedCart))
                 console.log('Cart data added successfully.');
+            } else {
+                console.log('User document does not exist.');
+            }
+        }
+        
+        navigate('/cart')
+    }
+
+    const buyNow = async () => {
+        if(!getIsAuthenticatedFromLocalStorage()){
+            toast.error("Please login to buy now.");
+            navigate("/account");
+        }
+        else{
+            handleOpen();
+            console.log(productDetail1);
+            toast.success('Successfully Bought Product!')
+            const productDocRef = doc(db, 'users', user.email);
+            const docSnapshot = await getDoc(productDocRef);
+            if (docSnapshot.exists()) {
+                const userData = docSnapshot.data();
+                const updatedOrder = userData.order || [];
+                updatedOrder.unshift({ productName: productDetail.name, productPrice: productDetail.price, productQuantity: productDetail1.quantity ,productImage:productDetail.img});
+                await updateDoc(productDocRef, { order: updatedOrder });
+                console.log('Order data added successfully.');
             } else {
                 console.log('User document does not exist.');
             }
@@ -108,7 +155,14 @@ const ProductDesignPage = () => {
                             <button onClick={()=>counter("dec")}>-</button>
                         </div>
                         <button className="add-to-cart" onClick={addToCartHandler}>Add to Cart</button>
-                        <button className="buy-now">Buy Now</button>
+                        <Modal 
+                        open={open}
+                        onClose={handleClose}>
+                            <Box sx={style}>
+                                <PaymentDetailForm check = {true} buy={productDetail1.quantity*productDetail.price}/>
+                            </Box>
+                        </Modal>
+                        <button className="buy-now" onClick={buyNow}>Buy Now</button>
                     </div>
                 </section>
             </div>

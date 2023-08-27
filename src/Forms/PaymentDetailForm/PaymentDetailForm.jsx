@@ -1,11 +1,25 @@
+/* eslint-disable react/prop-types */
 import './PaymentDetailForm.css'
 import SelectCountry from '../../UI/SelectCountry'
-const PaymentDetailForm = () => {
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+const PaymentDetailForm = (props) => {
+    var price = 0;
+    if (props.check === true){
+        price = props.buy;
+    }
+    const totalPrice =useSelector((state)=>(state.totalPrice.value));
+    useEffect(()=>{
+        console.log(totalPrice);
+    },[totalPrice])
+    if (props.check === false){
+        price = totalPrice;
+    }
   return (
     <form className="payment-detail-form">
         <div className="subtotal-section">
             <div className="subtotal-text">Subtotal</div>
-            <div className="subtotal-price">$100</div>
+            <div className="subtotal-price">${price}</div>
         </div>
         <hr/>
         <div className="shipping-section">
@@ -36,14 +50,14 @@ const PaymentDetailForm = () => {
         <hr/>
         <div className='coupon-code-section'>                <div className='coupon-code-text'>Coupon Code</div>
             <div className='coupon-code-input'>
-                <input type="text" placeholder='coupon code'></input>
-                <button>Apply</button>
+                <input type="text" placeholder='currently no coupon code is applicable'></input>
+                <button disabled={true}>Apply</button>
             </div>
         </div>
         <hr/>
         <div className="total-section">
             <div className="total-text">Grand Total</div>
-            <div className="total-price">$100</div>
+            <div className="total-price">${price}</div>
         </div>
         <div className="payment-button">
             <button>Proceed to Payment</button>

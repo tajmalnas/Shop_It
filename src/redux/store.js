@@ -6,6 +6,7 @@ import ratingFilterReducer from './ratingFilter';
 import productDetailReducer from './productDetail';
 import isAuthReducer from './isAuth';
 import cartReducer from './cart';
+import totalPriceReducer from './totalPrice';
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
     productDetail:productDetailReducer,
     isAuth:isAuthReducer,
     cart:cartReducer,
+    totalPrice:totalPriceReducer,
   },
 })
