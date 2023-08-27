@@ -14,7 +14,10 @@
     font-size: 1.2rem;
     font-weight: 500;
     margin-left: 0.5rem;
+    width: 8rem;
+    margin-right: 1rem;
     color: rgb(136, 127, 255);
+    text-overflow: ellipsis;
 }
 
 .cart-card-image{
@@ -43,6 +46,9 @@
     font-size: 1.2rem;
     font-weight: 500;
     margin-right: 0.5rem;
+    border:2px solid rgb(38, 194, 129);
+    padding:3px;
+    border-radius: 5px;
 }
 .cart-card-quantity{
     display: flex;

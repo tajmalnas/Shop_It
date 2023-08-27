@@ -6,11 +6,12 @@ import CartPage from './pages/CartPage/CartPage';
 import 'primeicons/primeicons.css';
 import './App.css';
 import AccountPage from './pages/AccountPage/AccountPage';
-
+import {Toaster} from 'react-hot-toast';
 
 const App = () => {
   return (
     <div>
+    <div><Toaster position="top-center" reverseOrder={false}/></div>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/product-listing" element={<ProductListing />} />

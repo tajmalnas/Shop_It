@@ -9,7 +9,12 @@ import ProductDetailsDetail from "../../components/ProductDetailComponents/Produ
 import RatingAndReview from "../../components/ProductDetailComponents/RatingAndReview/RatingAndReview";
 import ProductDisscussion from "../../components/ProductDetailComponents/ProductDiscussion/ProductDisscussion";
 import { useSelector } from "react-redux";
-
+import {getIsAuthenticatedFromLocalStorage} from "../../utils/localStorage";
+import { useNavigate } from "react-router-dom";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { auth, db} from "../../FirebaseConfig/FirebaseConfig";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-hot-toast";
 
 const ProductDesignPage = () => {
 
@@ -17,6 +22,15 @@ const ProductDesignPage = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const [user, setUser] = useState(null);
+    const [authUser] = useAuthState(auth);
+
+    useEffect(() => {
+        if (authUser) {
+            setUser(authUser);
+        }
+    }, [authUser]);
 
     const productDetail = useSelector((state)=>(state.productDetail.value));
     console.log(productDetail);
@@ -38,6 +52,31 @@ const ProductDesignPage = () => {
             }
         }
     }
+
+    const navigate = useNavigate();
+
+    const addToCartHandler = async () => {
+        if(!getIsAuthenticatedFromLocalStorage()){
+            navigate("/account");
+            toast.error("Please login to add to cart.");
+        }
+        else{
+            console.log(productDetail1);
+            toast.success('Successfully Added Product To Cart!')
+            const productDocRef = doc(db, 'users', user.email);
+            const docSnapshot = await getDoc(productDocRef);
+            if (docSnapshot.exists()) {
+                const userData = docSnapshot.data();
+                const updatedCart = userData.cart || [];
+                updatedCart.unshift({ productName: productDetail.name, productPrice: productDetail.price, productQuantity: productDetail1.quantity ,productImage:productDetail.img});
+                await updateDoc(productDocRef, { cart: updatedCart });
+                console.log('Cart data added successfully.');
+            } else {
+                console.log('User document does not exist.');
+            }
+        }
+    }
+
     useEffect(()=>{
         setProductDetail1({...productDetail,quantity:1});
     },[productDetail]);
@@ -68,7 +107,7 @@ const ProductDesignPage = () => {
                             <p>{productDetail1.quantity}</p>
                             <button onClick={()=>counter("dec")}>-</button>
                         </div>
-                        <button className="add-to-cart">Add to Cart</button>
+                        <button className="add-to-cart" onClick={addToCartHandler}>Add to Cart</button>
                         <button className="buy-now">Buy Now</button>
                     </div>
                 </section>

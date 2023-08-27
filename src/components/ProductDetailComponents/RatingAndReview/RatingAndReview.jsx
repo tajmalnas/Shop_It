@@ -88,5 +88,4 @@ const RatingAndReview = (props) => {
     </div>
   )
 }
-
 export default RatingAndReview
