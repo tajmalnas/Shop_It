@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "fireb
 import { useDispatch } from 'react-redux';
 import './LoginForm.css'
 import { setAuth } from '../../redux/isAuth';
+import { toast } from 'react-hot-toast';
 
 const LoginForm = () => {
   const [isSignup, setIsSignup] = useState(true);
@@ -70,6 +71,7 @@ const LoginForm = () => {
         
         console.log('Logged in as:', user.email);
       } catch (error) {
+        toast.error('Invalid email or password');
         console.error('Error signing in:', error);
       }      
     }

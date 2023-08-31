@@ -7,7 +7,8 @@ import productDetailReducer from './productDetail';
 import isAuthReducer from './isAuth';
 import cartReducer from './cart';
 import totalPriceReducer from './totalPrice';
-
+import deleteNameReducer from './deleteName';
+import ordersReducer from './orders';
 export const store = configureStore({
   reducer: {
     productlist : productListReducer,
@@ -18,5 +19,7 @@ export const store = configureStore({
     isAuth:isAuthReducer,
     cart:cartReducer,
     totalPrice:totalPriceReducer,
+    deleteName:deleteNameReducer,
+    orders:ordersReducer,
   },
 })
