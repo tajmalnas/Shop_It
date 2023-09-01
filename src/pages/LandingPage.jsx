@@ -5,12 +5,12 @@ import CashBackBanner from "../components/LandingPageComponents/CashBackBanner/C
 import CategoryDisplay from "../components/LandingPageComponents/CategoryShower/CategoryDisplay"
 import ChooseBrand from "../components/LandingPageComponents/ChooseBrand/ChooseBrand"
 import HeroBanner from "../components/LandingPageComponents/Hero/HeroBanner"
-import Navbar from "../components/LandingPageComponents/Navbar"
 import TodaysDeals from "../components/LandingPageComponents/TodaysDeals/TodaysDeals"
 import "./LandingPage.css"
 import SimpleReactFooter from "simple-react-footer";
 import { useState, useEffect } from 'react';
 import SearchResults from "../UI/SearchResultsBox/SearchResults"
+import { AnimatePresence, motion } from "framer-motion";
 const LandingPage = () => {
 
   const [searchValue, setSearchValue] = useState('');
@@ -39,19 +39,19 @@ const LandingPage = () => {
       resources: [
         {
           name: "About",
-          link: "/about"
+          link: "/"
         },
         {
           name: "Careers",
-          link: "/careers"
+          link: "/"
         },
         {
           name: "Contact",
-          link: "/contact"
+          link: "/"
         },
         {
           name: "Admin",
-          link: "/admin"
+          link: "/"
         }
       ]
     },
@@ -60,11 +60,11 @@ const LandingPage = () => {
       resources: [
         {
           name: "Privacy",
-          link: "/privacy"
+          link: "/"
         },
         {
           name: "Terms",
-          link: "/terms"
+          link: "/"
         }
       ]
     },
@@ -73,18 +73,19 @@ const LandingPage = () => {
       resources: [
         {
           name: "Locations",
-          link: "/locations"
+          link: "/"
         },
         {
           name: "Culture",
-          link: "/culture"
+          link: "/"
         }
       ]
     }
   ];
   return (
     <>
-      <Navbar />
+    <AnimatePresence>
+    <motion.div initial={{opacity:0 }} animate={{opacity:1}} transition={{duration:1}} exit={{opacity:0}}>
       <HeroBanner />
       <div className="searchBar">
         <Input name={"main"} setSearchValue={setSearchValue} />
@@ -101,12 +102,12 @@ const LandingPage = () => {
         description={description}
         title={title}
         columns={columns}
-        linkedin="fluffy_cat_on_linkedin"
-        facebook="fluffy_cat_on_fb"
-        twitter="fluffy_cat_on_twitter"
-        instagram="fluffy_cat_live"
-        youtube="UCFt6TSF464J8K82xeA?"
-        pinterest="fluffy_cats_collections"
+        linkedin="taj-malnas-37091122a/"
+        facebook="search/top/?q=Tajuddin%20Malnas"
+        twitter="taj-malnas-37091122a/"
+        instagram="taj_malnas"
+        youtube="null"
+        pinterest="tajmalnas"
         copyright="Taj Malnas"
         iconColor="black"
         backgroundColor="skyblue"
@@ -115,6 +116,8 @@ const LandingPage = () => {
       >
       </SimpleReactFooter>
       }
+      </motion.div>
+      </AnimatePresence>
     </>
   )
 }

@@ -7,11 +7,14 @@ import 'primeicons/primeicons.css';
 import './App.css';
 import AccountPage from './pages/AccountPage/AccountPage';
 import {Toaster} from 'react-hot-toast';
+import Navbar from './components/LandingPageComponents/Navbar';
 
 const App = () => {
   return (
     <div>
     <div><Toaster position="top-center" reverseOrder={false}/></div>
+    <Navbar/>
+    <hr/>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/product-listing" element={<ProductListing />} />

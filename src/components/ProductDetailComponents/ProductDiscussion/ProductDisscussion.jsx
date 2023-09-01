@@ -4,12 +4,15 @@ import DiscussCard from '../../DiscussCard/DiscussCard'
 import './ProductDisscussion.css'
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../FirebaseConfig/FirebaseConfig';
+
 const ProductDisscussion = (props) => {
   var id = props.id;
   id = id.toString();
   console.log(id)
 
   const discussRef = useRef('');
+
+  const username = localStorage.getItem('username');
 
   const changekHandler = (e) => {
     e.preventDefault();
@@ -26,9 +29,9 @@ const ProductDisscussion = (props) => {
       if (docSnapshot.exists()) {
         const productData = docSnapshot.data();
         const updatedDiscuss = productData.discuss || [];
-        updatedDiscuss.unshift({ discuss: discussRef.current });
-        await updateDoc(productDocRef, { discuss: updatedDiscuss });
-        setDiscuss((prevDiscuss) => [{ discuss: discussRef.current },...prevDiscuss]);
+        updatedDiscuss.unshift({username:username, discuss: discussRef.current });
+        await updateDoc(productDocRef, {discuss: updatedDiscuss });
+        setDiscuss((prevDiscuss) => [{username:username,discuss: discussRef.current },...prevDiscuss]);
         console.log('Discuss data added successfully.');
       } else {
         console.log('Product document does not exist.');
@@ -36,7 +39,7 @@ const ProductDisscussion = (props) => {
     } catch (error) {
       console.error('Error adding discuss data:', error);
     }
-  },[id])
+  },[id,username])
 
   const [discuss, setDiscuss] = useState([]);
 
@@ -68,7 +71,7 @@ const ProductDisscussion = (props) => {
         </div>
         <div className="discussion-lower">
             {discuss.length>0 && discuss.map((item) => (
-            <DiscussCard key={makeId()} info = {item.discuss}  />
+            <DiscussCard key={makeId()} info = {item.discuss} username = {item.username}  />
             ))}
             {
               discuss.length===0 && <h1>Be the first to discuss</h1>

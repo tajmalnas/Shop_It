@@ -18,6 +18,8 @@ const RatingAndReview = (props) => {
     console.log(id)
     const [value, setValue] = useState(1);
 
+    const username = localStorage.getItem('username');
+
     const submitHandler = useCallback(async (e) => {
       e.preventDefault();
       console.log(reviewInfoRef.current);
@@ -27,9 +29,9 @@ const RatingAndReview = (props) => {
         if (docSnapshot.exists()) {
           const productData = docSnapshot.data();
           const updatedRating = productData.rating || [];
-          updatedRating.unshift({ star: value, review: reviewInfoRef.current });
+          updatedRating.unshift({ star: value, review: reviewInfoRef.current ,username:username });
           await updateDoc(productDocRef, { rating: updatedRating });
-          setRating((prevRating) => [{ star: value, review: reviewInfoRef.current },...prevRating]);
+          setRating((prevRating) => [{username:username, star: value, review: reviewInfoRef.current },...prevRating]);
           console.log('Review data added successfully.');
         } else {
           console.log('Product document does not exist.');
@@ -37,7 +39,7 @@ const RatingAndReview = (props) => {
       } catch (error) {
         console.error('Error adding review data:', error);
       }
-    },[id, value])
+    },[id, value, username])
   
     const [rating, setRating] = useState([]);
   
@@ -81,7 +83,7 @@ const RatingAndReview = (props) => {
         </div>
         <div className="rate-and-review-lower">
             {rating.length>0 && rating.map((item) => (
-            <ReviewCard key={makeId} star = {item.star} review = {item.review} />
+            <ReviewCard key={makeId} star = {item.star} review = {item.review} username={item.username} />
             ))}
             {rating.length===0 && <h3>No reviews yet</h3>}
         </div>

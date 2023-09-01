@@ -1,17 +1,32 @@
 import  { useState } from 'react';
 import './FeedbackForm.css';
+import { doc, setDoc} from 'firebase/firestore';
+import { db, } from '../../FirebaseConfig/FirebaseConfig';
+import { toast } from 'react-hot-toast';
 
 const FeedbackForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [feedback, setFeedback] = useState('');
 
-  const handleSubmit = (e) => {
+  const makeId = ()=>{
+    return Math.random().toString(36).substr(2, 9);
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const feedbackData = doc(db, 'feedback', makeId());
+    const feedbackDataObject = {
+      name,
+      email,
+      feedback,
+    }
+    await setDoc(feedbackData, feedbackDataObject);
     console.log('Feedback submitted:', { name, email, feedback });
     setName('');
     setEmail('');
     setFeedback('');
+    toast.success("Feedback submitted successfully!")
   };
 
   return (

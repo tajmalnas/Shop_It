@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 const ReviewCard = (props) => {
 
   const [user, setUser] = useState(null);
+  console.log(user);
 
   const [authUser] =  useAuthState(auth);
   useEffect(() => {
@@ -35,8 +36,6 @@ const ReviewCard = (props) => {
     fetchUserData();
   }, [authUser]);
 
-  const fullName = user ? `${user.first} ${user.last}` : '';
-
   return (
     <div className="review-card">
         <div className="review-card-img">
@@ -44,7 +43,7 @@ const ReviewCard = (props) => {
         </div>
         <div className="review-card-info">
             <div className='review-info'>
-                <h4>{fullName}</h4>
+                <h4>{props.username}</h4>
                 {Array.from({length: props.star}, (_, i) => (
                   <p key={i}>⭐</p>
                 ))}

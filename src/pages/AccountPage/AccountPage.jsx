@@ -5,7 +5,6 @@ import FeedbackForm from '../../Forms/FeedbackForm/FeedbackForm'
 import Setting from '../../Sections/SettingSection/Setting'
 import SideBar from '../../UI/SideBar/SideBar'
 import AccountCard from '../../components/AccountCard/AccountCard'
-import Navbar from '../../components/LandingPageComponents/Navbar'
 import './AccountPage.css'
 import { useState } from 'react'
 import { motion } from 'framer-motion' 
@@ -37,8 +36,6 @@ const AccountPage = () => {
 
   return (
     <>
-    <Navbar/>
-    <hr/>
     {!isAuth && <div className='account-page-form'>
         <LoginForm/>
     </div>}

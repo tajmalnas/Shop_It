@@ -60,6 +60,7 @@ const LoginForm = () => {
       signIn(email, password,first,last,username);
       dispatch(setAuth(true));
       localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('username', username);
       console.log('Sign up:', { username, email, password });
     } else {
       try {
@@ -68,7 +69,7 @@ const LoginForm = () => {
         
         dispatch(setAuth(true));
         localStorage.setItem('isAuthenticated', 'true');
-        
+        localStorage.setItem('username', username);
         console.log('Logged in as:', user.email);
       } catch (error) {
         toast.error('Invalid email or password');

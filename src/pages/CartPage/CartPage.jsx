@@ -1,7 +1,6 @@
 import PaymentDetailForm from '../../Forms/PaymentDetailForm/PaymentDetailForm';
 import CartCard from '../../components/CartCard/CartCard';
 import './CartPage.css';
-import Navbar from '../../components/LandingPageComponents/Navbar';
 import { useEffect, useState } from 'react';
 import { auth, db } from '../../FirebaseConfig/FirebaseConfig';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
@@ -64,7 +63,7 @@ const CartPage = () => {
             for (var j = 0; j < updatedCartNew.length; j++) {
               totalPrice = totalPrice + updatedCartNew[j].productPrice * updatedCartNew[j].productQuantity;
             }
-            dispatch(setTotalPrice(totalPrice)); // Update total price with updatedCartNew
+            dispatch(setTotalPrice(totalPrice)); 
           }
         }
       }
@@ -109,8 +108,6 @@ const CartPage = () => {
   console.log(authStatus);  
   return (
     <>
-    <Navbar/>
-    <hr/>
     <div className='cartpage-section'>
         <div className='cart-card-container'>
             {authStatus && reduxCart.map((item)=>{
@@ -119,7 +116,7 @@ const CartPage = () => {
             <hr/>
         </div>
         <div className='cart-page-pay'>
-            <PaymentDetailForm check={false} buy={100} />
+            <PaymentDetailForm check={false} buy={100} user={user} productDetail1 = {null} />
         </div>
     </div>
     </>

@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 const DiscussCard = (props) => {
   const [user, setUser] = useState(null);
+  console.log(user);
 
   const [authUser] =  useAuthState(auth);
   useEffect(() => {
@@ -35,7 +36,6 @@ const DiscussCard = (props) => {
     fetchUserData();
   }, [authUser]);
 
-  const fullName = user ? `${user.first} ${user.last}` : '';
   return (
     <div className="discuss-card">
       <div className="discuss-card-img">
@@ -43,7 +43,7 @@ const DiscussCard = (props) => {
       </div>
       <div className="discuss-card-info">
         <div className='discuss-info'>
-          <h4>{fullName}</h4>
+          <h4>{props.username}</h4>
         </div>
         <div className='actual-discuss'>{props.info}</div>
         <div className='discuss-like'>
