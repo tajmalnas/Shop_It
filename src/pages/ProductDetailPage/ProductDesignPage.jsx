@@ -107,19 +107,6 @@ const ProductDesignPage = () => {
         }
         else{
             handleOpen();
-            // console.log(productDetail1);
-            // toast.success('Successfully Bought Product!')
-            // const productDocRef = doc(db, 'users', user.email);
-            // const docSnapshot = await getDoc(productDocRef);
-            // if (docSnapshot.exists()) {
-            //     const userData = docSnapshot.data();
-            //     const updatedOrder = userData.order || [];
-            //     updatedOrder.unshift({ productName: productDetail.name, productPrice: productDetail.price, productQuantity: productDetail1.quantity ,productImage:productDetail.img});
-            //     await updateDoc(productDocRef, { order: updatedOrder });
-            //     console.log('Order data added successfully.');
-            // } else {
-            //     console.log('User document does not exist.');
-            // }
         }
     }
 

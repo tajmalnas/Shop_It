@@ -94,6 +94,7 @@
     .product-design-upper-right{
         display: flex;
         flex-direction: column;
+        margin:1rem;
     }
     .product-design-upper-right .hh,.pp{
         margin-bottom: 0rem;
@@ -107,7 +108,7 @@
         flex-direction: column;
     }
     .product-design-upper-right .quantity .button-div{
-        width: 100%;
+        width: 95%;
         justify-content: space-between;
     }
     .product-design-upper-right .quantity .add-to-cart{

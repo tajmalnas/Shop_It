@@ -57,12 +57,20 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isSignup) {
+      if(first=='' || last=='' || username=='' || email=='' || password==''){
+        toast.error('Please fill all the fields');
+        return;
+      }
       signIn(email, password,first,last,username);
       dispatch(setAuth(true));
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('username', username);
       console.log('Sign up:', { username, email, password });
     } else {
+      if(email=='' || password=='' || username==''){
+        toast.error('Please fill all the fields');
+        return;
+      }
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
@@ -74,7 +82,7 @@ const LoginForm = () => {
         toast.error('Invalid email or password');
         console.error('Error signing in:', error);
       }      
-    }
+    } 
   };
 
   return (
@@ -109,7 +117,6 @@ const LoginForm = () => {
             onChange={(e) => setLast(e.target.value)}
           />
         )}
-
         <input
           type="text"
           placeholder="username"
