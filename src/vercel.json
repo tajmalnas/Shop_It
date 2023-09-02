@@ -1,24 +1,29 @@
 {
-    "routes":[
-        {
-            "src":"/",
-            "dest":"/"
-        },
-        {
-            "src":"/product-listing",
-            "dest":"/"
-        },
-        {
-            "src":"/product-detail/:id",
-            "dest":"/"
-        },
-        {
-            "src":"/cart",
-            "dest":"/"
-        },
-        {
-            "src":"/account",
-            "dest":"/"
-        }
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/",
+        "dest": "/"
+      },
+      {
+        "src": "/product-listing",
+        "dest": "/"
+      },
+      {
+        "src": "/product-detail/:id",
+        "dest": "/"
+      },
+      {
+        "src": "/cart",
+        "dest": "/"
+      },
+      {
+        "src": "/account",
+        "dest": "/"
+      }
     ]
-}
+  }
+  
