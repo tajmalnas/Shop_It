@@ -1,13 +1,19 @@
 import CategoryCard from '../../CategoryCard/CategoryCard';
 import './CategoryDisplay.css'
-import Carousel from 'react-elastic-carousel';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+
+
 const CategoryDisplay = () => {
-    const breakPoints = [
-        { width: 1, itemsToShow: 2 },
-        { width: 550, itemsToShow: 3 },
-        { width: 768, itemsToShow: 4 },
-        { width: 1200, itemsToShow: 6 }
-      ];
+    // const breakPoints = [
+    //     { width: 1, itemsToShow: 2 },
+    //     { width: 550, itemsToShow: 3 },
+    //     { width: 768, itemsToShow: 4 },
+    //     { width: 1200, itemsToShow: 6 }
+    //   ];
+
+   
+
       const categoriesArray = [
         {
           id: 1,
@@ -57,13 +63,26 @@ const CategoryDisplay = () => {
         
       ];
 
+      const settings = {
+        items: 4, 
+        mouseTrackingEnabled: true,
+        infinite: true, 
+        showArrows: false,
+        responsive: {
+          0: { items: 2 }, 
+          550:{items:3},
+          768: { items: 4 },
+          1024: { items: 6 },
+        },
+      };
+
   return (
     <div>
       <div className='text11'>
         Our Top Category
       </div>
       <div className='carousel'>
-        <Carousel
+        {/* <Carousel
           breakPoints={breakPoints}
           showArrows={false}
           
@@ -82,7 +101,23 @@ const CategoryDisplay = () => {
           {categoriesArray.map((item) => (
             <CategoryCard key={item.id} text={item.name} url={item.img} />
           ))}
-        </Carousel>
+        </Carousel> */}
+
+        <AliceCarousel
+          mouseTracking
+          infinite
+          autoPlay
+          autoPlayInterval={3500}
+          buttonsDisabled={true}
+          dotsDisabled={false}
+          showArrows={false}
+          disableButtonsControls={true}
+          responsive={settings.responsive}
+        >
+          {categoriesArray.map((item) => (
+            <CategoryCard key={item.id} text={item.name} url={item.img} />
+          ))}
+        </AliceCarousel>
       </div>
     </div>
   );

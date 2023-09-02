@@ -7,81 +7,82 @@ import ChooseBrand from "../components/LandingPageComponents/ChooseBrand/ChooseB
 import HeroBanner from "../components/LandingPageComponents/Hero/HeroBanner"
 import TodaysDeals from "../components/LandingPageComponents/TodaysDeals/TodaysDeals"
 import "./LandingPage.css"
-import SimpleReactFooter from "simple-react-footer";
-import { useState, useEffect } from 'react';
+// import SimpleReactFooter from "simple-react-footer";
+import { useState } from 'react';
 import SearchResults from "../UI/SearchResultsBox/SearchResults"
 import { AnimatePresence, motion } from "framer-motion";
+import Footer from "../components/Footer/Footer"
 const LandingPage = () => {
 
   const [searchValue, setSearchValue] = useState('');
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    // Update window width when the window is resized
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  // useEffect(() => {
+  //   // Update window width when the window is resized
+  //   const handleResize = () => {
+  //     setWindowWidth(window.innerWidth);
+  //   };
 
-    window.addEventListener('resize', handleResize);
+  //   window.addEventListener('resize', handleResize);
 
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  //   // Clean up the event listener on component unmount
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
-  const description = "This web app is made to provide flawless shopping experience to the users.It is a one stop solution for all your shopping needs.It provides you with the best deals and offers from all the major e-commerce websites like Amazon,Flipkart,Myntra etc.";
-  const title = "Shop-It";
-  const columns = [
-    {
-      title: "Resources",
-      resources: [
-        {
-          name: "About",
-          link: "/"
-        },
-        {
-          name: "Careers",
-          link: "/"
-        },
-        {
-          name: "Contact",
-          link: "/"
-        },
-        {
-          name: "Admin",
-          link: "/"
-        }
-      ]
-    },
-    {
-      title: "Legal",
-      resources: [
-        {
-          name: "Privacy",
-          link: "/"
-        },
-        {
-          name: "Terms",
-          link: "/"
-        }
-      ]
-    },
-    {
-      title: "Visit",
-      resources: [
-        {
-          name: "Locations",
-          link: "/"
-        },
-        {
-          name: "Culture",
-          link: "/"
-        }
-      ]
-    }
-  ];
+  // const description = "This web app is made to provide flawless shopping experience to the users.It is a one stop solution for all your shopping needs.It provides you with the best deals and offers from all the major e-commerce websites like Amazon,Flipkart,Myntra etc.";
+  // const title = "Shop-It";
+  // const columns = [
+  //   {
+  //     title: "Resources",
+  //     resources: [
+  //       {
+  //         name: "About",
+  //         link: "/"
+  //       },
+  //       {
+  //         name: "Careers",
+  //         link: "/"
+  //       },
+  //       {
+  //         name: "Contact",
+  //         link: "/"
+  //       },
+  //       {
+  //         name: "Admin",
+  //         link: "/"
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     title: "Legal",
+  //     resources: [
+  //       {
+  //         name: "Privacy",
+  //         link: "/"
+  //       },
+  //       {
+  //         name: "Terms",
+  //         link: "/"
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     title: "Visit",
+  //     resources: [
+  //       {
+  //         name: "Locations",
+  //         link: "/"
+  //       },
+  //       {
+  //         name: "Culture",
+  //         link: "/"
+  //       }
+  //     ]
+  //   }
+  // ];
   return (
     <>
     <AnimatePresence>
@@ -97,7 +98,7 @@ const LandingPage = () => {
       <CashBackBanner />
       <TodaysDeals />
       <CashBack5 />
-      { windowWidth>490 && <SimpleReactFooter
+      {/* { windowWidth>490 && <SimpleReactFooter
         id="footer"
         description={description}
         title={title}
@@ -115,7 +116,8 @@ const LandingPage = () => {
         copyrightColor="grey"
       >
       </SimpleReactFooter>
-      }
+      } */}
+      <Footer/>
       </motion.div>
       </AnimatePresence>
     </>

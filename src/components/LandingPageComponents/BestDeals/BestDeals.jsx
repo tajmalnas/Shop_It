@@ -1,13 +1,27 @@
 import ProductCard from '../../ProductCard/ProductCard';
-import Carousel from "react-elastic-carousel";
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 import './BestDeals.css'
 const BestDeals = () => {
-    const breakPoints = [
-        { width: 1, itemsToShow: 2 },
-        { width: 550, itemsToShow: 3 },
-        { width: 768, itemsToShow: 4 },
-        { width: 1200, itemsToShow: 5 }
-      ];
+    // const breakPoints = [
+    //     { width: 1, itemsToShow: 2 },
+    //     { width: 550, itemsToShow: 3 },
+    //     { width: 768, itemsToShow: 4 },
+    //     { width: 1200, itemsToShow: 5 }
+    //   ];
+
+    const settings = {
+      items: 4, 
+      mouseTrackingEnabled: true,
+      infinite: true, 
+      showArrows: false,
+      responsive: {
+        0: { items: 2 }, 
+        690:{items:3},
+        900: { items: 4 },
+        1100: { items: 5 },
+      },
+    };
 
       const BestDealsArray = [
         {
@@ -98,7 +112,7 @@ const BestDeals = () => {
             Best Deals For You!
         </div>
         <div className='carousel'>
-        <Carousel
+        {/* <Carousel
           breakPoints={breakPoints}
           showArrows={false}
           enableAutoPlay={true}
@@ -118,7 +132,24 @@ const BestDeals = () => {
           {BestDealsArray.map((item) => (
             <ProductCard key={item.id} id={item.id*1000} name={item.name} img={item.img} description={item.description} price={item.price} rating={item.rating}/>
           ))}
-        </Carousel>
+        </Carousel> */}
+
+        <AliceCarousel
+          mouseTracking
+          infinite
+          autoPlay
+          autoPlayInterval={2000}
+          buttonsDisabled={true}
+          dotsDisabled={false}
+          showArrows={false}
+          disableButtonsControls={true}
+          responsive={settings.responsive}
+        >
+          {BestDealsArray.map((item) => (
+            <ProductCard key={item.id} id={item.id*1000} name={item.name} img={item.img} description={item.description} price={item.price} rating={item.rating}/>
+          ))}
+        </AliceCarousel>
+
         </div>
     </div>
   )
