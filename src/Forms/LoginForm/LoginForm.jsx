@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { doc, setDoc } from 'firebase/firestore';
+import { doc,setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import {auth,db} from '../../FirebaseConfig/FirebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
@@ -66,7 +66,6 @@ const LoginForm = () => {
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        
         dispatch(setAuth(true));
         localStorage.setItem('isAuthenticated', 'true');
         localStorage.setItem('username', username);
@@ -110,14 +109,14 @@ const LoginForm = () => {
             onChange={(e) => setLast(e.target.value)}
           />
         )}
-        {isSignup && (
-          <input
-            type="username"
-            placeholder="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        )}
+
+        <input
+          type="text"
+          placeholder="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
         <button type="submit">{isSignup ? 'Sign Up' : 'Login'}</button>
       </form>
       <button className="toggle-button" onClick={handleToggle}>
