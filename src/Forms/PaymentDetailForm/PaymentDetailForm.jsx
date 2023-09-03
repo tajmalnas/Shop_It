@@ -2,7 +2,7 @@
 import './PaymentDetailForm.css'
 import SelectCountry from '../../UI/SelectCountry'
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../FirebaseConfig/FirebaseConfig';
@@ -76,15 +76,25 @@ const PaymentDetailForm = (props) => {
         }
     };
     
+    const [stateInput, setStateInput] = useState('');
+    const [cityInput, setCityInput] = useState('');
+    const [postalCodeInput, setPostalCodeInput] = useState('');
 
     const submitHandler = (event) => {
         event.preventDefault();
-        if(props.check === true){
+    
+        if (stateInput === '' || cityInput === '' || postalCodeInput === '') {
+            toast.error('Please fill out all required fields.');
+            return;
+        }
+        if (props.check === true) {
             addToOrder();
+        } else {
+            addToOrderAll();
         }
-        else{
-            addToOrderAll()
-        }
+        setStateInput('');
+        setCityInput('');
+        setPostalCodeInput('');
     }
 
   return (
@@ -98,24 +108,26 @@ const PaymentDetailForm = (props) => {
             <div className="shipping-text">Shipping</div>
             <div className="shipping-country">
                 <div className="shipping-country-text">Country</div>
-                <div className="shipping-country-dropdown"><SelectCountry/></div>
+                <div className="shipping-country-dropdown">
+                    <SelectCountry/>
+                </div>
             </div>
             <div className="shipping-state">
                 <div className="shipping-state-text">State</div>
                 <div className="shipping-state-input">
-                    <input type="text" placeholder="State"/>
+                    <input type="text" placeholder="State" onChange={(e)=>setStateInput(e.target.value)}/>
                 </div>
             </div>
             <div className="shipping-city">
                 <div className="shipping-city-text">City</div>
                 <div className="shipping-city-input">
-                    <input type="text" placeholder="city"></input>
+                    <input type="text" placeholder="city" onChange={(e)=>{setCityInput(e.target.value)}} ></input>
                 </div>
             </div>
             <div className="shipping-postal">
                 <div className="shipping-postal-text">Postal Code</div>
                 <div className="shipping-postal-input">
-                    <input type="number" placeholder='postal code'></input>
+                    <input type="number" placeholder='postal code' onChange={(e)=>setPostalCodeInput(e.target.value)} ></input>
                 </div>
             </div>
         </div>

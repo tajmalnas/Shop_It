@@ -58,7 +58,7 @@ export default function SelectCountry() {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+        <InputLabel id="demo-multiple-name-label">INDIA</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
