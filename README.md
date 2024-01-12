@@ -1,1 +1,1 @@
-shop it
+shop it web application
